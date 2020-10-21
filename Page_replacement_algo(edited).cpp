@@ -73,6 +73,50 @@ void FIFO(int ref_str[],int npf,int nrs){
 }
 //                             FIFO ENDED                                    //
 
+//                                   LIFO                                    //
+void LIFO(int ref_str[],int npf,int nrs){
+  int pf[npf];
+  for (int k=0;k<npf;k++){
+    pf[k]=-1;
+  }
+  int i;
+  int page_faults=0;
+  // Page fault f=1 means element is present
+  print(pf,npf);
+  for (i=0;i<nrs;i++){
+    // el = ref_str[i]
+    if (page_fault(ref_str[i],pf,npf)==1){
+      // No page fault
+      continue;
+    }
+    else if (page_fault(ref_str[i],pf,npf)==0){
+      // Page fault occured
+      page_faults+=1;
+      // Check empty space
+      int assi=0;
+      for (int j=0;j<npf;j++){
+        // Empty space available
+        if (pf[j]==-1){
+          pf[j]=ref_str[i];
+          assi=1;
+          break;
+        }
+        else{
+          continue;
+        }
+      }
+      // No empty space was present
+      if (assi==0){
+        pf[npf-1]=ref_str[i];
+        assi=1;
+      }
+    }
+    print(pf,npf);
+  }
+  cout<<"Page Faults: "<<page_faults;
+}
+//                             LIFO ENDED                                    //
+
 //                             LRU                                           //
 void LRU(int ref_str[],int npf,int nrs){
   int p=0;
@@ -283,7 +327,7 @@ int main(){
 
   //Options
 
-  cout<<" || ===================== || \n Choose one of the following page replacement algorithms: \n\t1. FIFO\n\t2. LRU\n\t3. LFU\n\t4. Optimal\n || ====================== ||"<<endl;
+  cout<<" || ===================== || \n Choose one of the following page replacement algorithms: \n\t1. FIFO\n\t2. LIFO\n\t3. LRU\n\t4. LFU\n\t5. Optimal\n || ====================== ||"<<endl;
 
   int o;
   cin>>o;
@@ -291,11 +335,13 @@ int main(){
   switch (o) {
     case(1):FIFO(ref_str,npf,nrs);
     break;
-    case(2):LRU(ref_str,npf,nrs);
+    case(2):LIFO(ref_str,npf,nrs);
     break;
-    case(3):LFU(ref_str,npf,nrs);
+    case(3):LRU(ref_str,npf,nrs);
     break;
-    case(4):Optimal(ref_str,npf,nrs);
+    case(4):LFU(ref_str,npf,nrs);
+    break;
+    case(5):Optimal(ref_str,npf,nrs);
     break;
     default:cout<<"Invalid selection !!";
     break;
