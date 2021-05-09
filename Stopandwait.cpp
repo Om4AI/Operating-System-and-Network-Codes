@@ -4,8 +4,7 @@ using namespace std;
 
 int main(){
     int frames,n,c = 0;
-    cout<<endl<<"Name: Om Mule"<<endl<<"Reg. No: 19BCE0439"<<endl<<endl;
-    cout<<"Enter the total number of frames: ";
+    cout<<endl<<"Enter the total number of frames: ";
     cin>>n;
     // Instructions
     cout<<"------------------------------------";
