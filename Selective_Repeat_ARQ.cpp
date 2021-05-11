@@ -3,7 +3,6 @@ using namespace std;
 
 int main(){
     int f, w, total = 0;
-    cout<<endl<<"Name: Om Mule"<<endl<<"Reg. No: 19BCE0439"<<endl<<endl;
     cout<<endl<<"Total number of frames: ";
     cin>>f;
     cout<<endl<<"Enter N value/ Window Size: ";
