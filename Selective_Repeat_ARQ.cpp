@@ -13,6 +13,8 @@ int main(){
     cout<<endl<<"Receiver's End: "<<endl<<endl<<"Respond as follows: "<<endl<<"1-Frame received"<<endl<<"0-Frame lost"<<endl;
     cout<<endl<<"Sending the first "<<w<<" frames......"<<endl;
     total += w;
+    
+//     Traversing
     for (int i=1; i<=f; i++){
         int t;
         cout<<endl<<"Receiver's acknowledgement for frame "<<i<<" :";
